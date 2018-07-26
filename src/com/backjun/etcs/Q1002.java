@@ -1,9 +1,9 @@
-package com.backjun.q1;
+package com.backjun.etcs;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-public class Turret {
+public class Q1002 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

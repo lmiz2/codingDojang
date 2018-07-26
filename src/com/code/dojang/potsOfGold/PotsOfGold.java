@@ -1,4 +1,4 @@
-package com.code.dojang.etc;
+package com.code.dojang.potsOfGold;
 
 import java.util.ArrayList;
 import java.util.Deque;
@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.LinkedBlockingDeque;
 
-public class question2 {
+public class PotsOfGold {
 
 	/**
 	 * 
@@ -30,21 +30,40 @@ public class question2 {
 	 }
 	
 	public static void main(String[] args) {
-		Versus v = new Versus();
+		String[] loadingSkin = {"-","\\","|","/"};
 		
-		Player A = new Player(v);
-		Player B = new Player(v);
-		A.setName("A");
 		
-		B.setName("B");
-		A.start();
-		try {
-			Thread.sleep(250);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		Versus2 v = new Versus2();		
+		Player2 A = new Player2(v);
+		Player2 B = new Player2(v);
+		int playCount = 1000;
+		for(int i = 0; i < playCount ; i++) {
+			System.out.println("Loading.."+loadingSkin[i%4]+"  "+((float)i/(float)playCount)*100+"%");
+			while(true) {
+				try {
+					A.run();
+					B.run();
+				}catch(NullPointerException e) {
+//					System.out.println(A.getCoinCount());
+//					System.out.println(B.getCoinCount());
+					if(A.getCoinCount() > B.getCoinCount()) {
+						A.setWins(1);
+					}else if (A.getCoinCount() < B.getCoinCount()) {
+						B.setWins(1);
+					}
+					v = new Versus2();
+					A.init(v);
+					B.init(v);
+					break;
+				}
+			}
+			if(i == playCount-1) {
+				System.out.println("Loading.."+loadingSkin[(i+1)%4]+"  "+((float)(i+1)/(float)playCount)*100+"%");
+			}
 		}
-		B.start();
+		double winRating = (float)A.getWins()/(float)playCount *100;
+		System.out.println(A.getWins()+" : "+B.getWins());
+		System.out.println("A 의 승률 : "+ winRating +"%");
 		
 	}
 
@@ -52,23 +71,24 @@ public class question2 {
 	
 }
 
-class Pot{
+class Pot2{
 	private int goldCoin = 0;
 
 	public int getGoldCoin() {
 		return goldCoin;
 	}
 
-	Pot(){
-		this.goldCoin = new Random().nextInt(1000000);
+	Pot2(){
+		this.goldCoin = new Random().nextInt(10000000);
 	}
 }
 
-class Player extends Thread{
+class Player2{
 	int coinCount = 0;
 	int wins = 0;
-	Versus cls;
-	Player(Versus q){
+	Versus2 cls;
+	
+	Player2(Versus2 q){
 		this.cls = q;
 	}
 	
@@ -77,21 +97,24 @@ class Player extends Thread{
 	}
 	
 	public void setWins(int wins) {
-		this.wins = wins;
+		this.wins += wins;
 	}
 	
 	public int getCoinCount() {
 		return coinCount;
 	}
+	
+	public void init(Versus2 v) {
+		this.cls = v;
+		coinCount = 0;
+	}
 
 	public void setCoinCount(int coinCount) {
 		this.coinCount += coinCount;
-		System.out.print(this.toString() +" : get "+coinCount+", total:"+getCoinCount()+"  "); 
-		cls.printCurrLine();
 	}
 	
-	public int calCost(String path, Deque line) {//path는 나와 상대 차례를 순서대로 가리키는 0또는 1의 연속적인 스트링. 0은 왼쪽, 1은 오른쪽 항아리를 Get 
-		Deque<Pot> tmpLine = new LinkedBlockingDeque<Pot>();
+	public int calCost(String path, Deque line) {//path는 나와 상대 차례를 순서대로 가리키는 0또는 1의 연속적인 스트링. 1은 왼쪽, 0은 오른쪽 항아리를 Get 
+		Deque<Pot2> tmpLine = new LinkedBlockingDeque<Pot2>();
 		tmpLine.addAll(line);
 		int mySum = 0;
 		int otherSum = 0;
@@ -118,12 +141,11 @@ class Player extends Thread{
 		Map<String, Integer> costs = new HashMap<>();//<pathString, totalCost>
 		for(int i = 1 ; i < (int)Math.pow(2, line.size()+1); i++) {// 모든 경우의 수 path 출력
 			StringBuffer path2 = new StringBuffer();
-			for(int p = 0 ; p <(int)question2.log2((int)Math.pow(2, line.size())) - (int)question2.log2(i); p++) {
+			for(int p = 0 ; p <(int)PotsOfGold.log2((int)Math.pow(2, line.size())) - (int)PotsOfGold.log2(i); p++) {
 				path2.append("0");
 			}
 			path2.append(Integer.toBinaryString(i));
 			costs.put(path2.toString(), calCost(path2.toString(),line));
-//			System.out.println(path2);
 		}
 
 		for(String key : costs.keySet()) {
@@ -145,7 +167,6 @@ class Player extends Thread{
 		int matched0 = 0;
 		int matched1 = 0;
 		for(Map.Entry<String, Integer> e : maxs) {
-//			System.out.println(this.getName()+" : get "+e.getValue()+", path"+e.getKey());
 			if(e.getKey().charAt(0) =='0') {
 				matched0++;
 			}else {
@@ -161,52 +182,35 @@ class Player extends Thread{
 		 //1은 오른쪽꺼 빼기, -1은 왼쪽꺼 빼기
 	}
 	
-	@Override
 	public void run() {
-		// TODO Auto-generated method stub
-		while(true) {
-			int determine = 0;
-			
-			determine = thinking(cls.line);
-
-			try {
-				this.setCoinCount(cls.getPotCoin(determine).getGoldCoin());
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				
-				break;
-			} catch(NullPointerException e) {
-				System.out.println(this.getName()+" : My Turn is finished. Total Gold :"+getCoinCount());
-				break;
-			}
-		}
+		int determine = 0;
+		determine = thinking(cls.line);
+		this.setCoinCount(cls.getPot2Coin(determine).getGoldCoin());
 	}
 }
 
-class Versus{
-	Deque<Pot> line;
+class Versus2{
+	Deque<Pot2> line;
 	int potCount = 8;
-	Versus(){
+	Versus2(){
 
 		line = new LinkedBlockingDeque();
 		
 		for(int i = 0; i  < potCount; i++) {
-			line.add(new Pot());			
+			line.add(new Pot2());			
 		}
-		
-		printCurrLine();
+//		printCurrLine();
 	}
-	public synchronized Pot getPotCoin(int direction) {
+	public synchronized Pot2 getPot2Coin(int direction) {
 		if(direction >0) {
-			return (Pot) line.pollFirst();
+			return (Pot2) line.pollFirst();
 		}else {
-			return (Pot) line.pollLast();			
+			return (Pot2) line.pollLast();			
 		}
 	}
 	
 	public void printCurrLine() {
-		for(Pot p : line) {
+		for(Pot2 p : line) {
 			System.out.print("-"+p.getGoldCoin()+"-");
 		}
 		System.out.println();

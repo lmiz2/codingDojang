@@ -26,7 +26,7 @@ import java.util.Map;
 	91 = 9 + 1 + 91 
 	100 = 1 + 0 + 0 + 100 
  */
-public class question1 {
+public class SumOfSelfNumbers {
 
 	
 	@SuppressWarnings({ "unused", "unchecked", "rawtypes" })

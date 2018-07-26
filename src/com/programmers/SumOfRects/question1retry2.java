@@ -1,4 +1,4 @@
-package programmers.level5;
+package com.programmers.SumOfRects;
 
 import java.util.ArrayList;
 import java.util.List;
