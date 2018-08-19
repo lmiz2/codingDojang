@@ -36,7 +36,7 @@ public class PotsOfGold {
 		Versus2 v = new Versus2();		
 		Player2 A = new Player2(v);
 		Player2 B = new Player2(v);
-		int playCount = 1000;
+		int playCount = 10000;
 		for(int i = 0; i < playCount ; i++) {
 			System.out.println("Loading.."+loadingSkin[i%4]+"  "+((float)i/(float)playCount)*100+"%");
 			while(true) {
