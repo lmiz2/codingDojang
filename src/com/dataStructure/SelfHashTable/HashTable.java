@@ -15,7 +15,9 @@ public class HashTable<Character> {
 	public void put(char in) {
 		SelfCharacter input = new SelfCharacter(in);
 		list[input.hashCode()%list.length].add(in);
-		
+	}
+	
+	public void print() {
 		for(int i = 0; i < list.length; i++) {
 			if(list[i].isEmpty()) {
 				System.out.println(i + " : [ ]");
