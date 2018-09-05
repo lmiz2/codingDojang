@@ -41,6 +41,7 @@ class Solution {
 	    	  }		      
 	      }
 	      
+	      
 	      int[] answer = new int[2];
 	      numberOfArea = areaCnt;
 	      maxSizeOfOneArea = largestSize;
