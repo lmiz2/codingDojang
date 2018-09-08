@@ -29,15 +29,14 @@ import java.util.Map;
 public class SumOfSelfNumbers {
 
 	
-	@SuppressWarnings({ "unused", "unchecked", "rawtypes" })
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		// TODO Auto-generated method stub
-		int findTo = 0;
+		int findTo = 10000;
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		findTo = Integer.parseInt(br.readLine());
 		Map<Integer,String> results = new HashMap<>();
 		int selfnumberSum = 0;
-		for(int input = 1; input < findTo ; input ++) {// 4자리 수 동안.
+		for(int input = 1; input <= findTo ; input ++) {// 4자리 수 동안.
 			for(int j = 0; j < String.valueOf(input).length()*9 ; j++) {//네자리 수는 최대 36과 x를 더한 값이 이 네자리 수 이므로, 제너레이터는 네자리수에서 최대 36을 뺀 값일것. 고로 36번만 반복해서 찾아내면 됨.
 				String tmp = String.valueOf(input - j);//이 수가 제너레이터 일지 아닐지 알아보기
 				int sum = 0;
