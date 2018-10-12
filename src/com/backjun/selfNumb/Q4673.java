@@ -10,6 +10,7 @@ import java.util.Map;
 
 public class Q4673 {
 
+	@SuppressWarnings("unchecked")
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		// TODO Auto-generated method stub
 		int findTo = 10000;
