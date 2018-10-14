@@ -18,8 +18,6 @@ public class Q11404 {
 			s.parseInput(tmp);
 		}
 	}
-
-
 }
 
 class Solution{
