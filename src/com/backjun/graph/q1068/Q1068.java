@@ -22,7 +22,6 @@ public class Q1068 {
 }
 
 class Solution{
-	private static final int DELETED = -9999;
 	ArrayList<ArrayList<Integer>> trees;
 	int lineCount = 0;
 	int initWidth = 0;
@@ -37,7 +36,6 @@ class Solution{
 			StringTokenizer token = new StringTokenizer(input);
 			ArrayList<Integer> currTree = null;
 			if(lineCount == 2) {
-//				solution(Integer.parseInt(token.nextToken()));
 				delete(Integer.parseInt(token.nextToken()));
 			}else {
 				while (token.hasMoreElements()) {
@@ -68,10 +66,13 @@ class Solution{
 		ArrayList<Integer> targetList = trees.get(listIdx);
 		int deleteOffset = seq - targetStartSeq;
 		delLoop(targetList, deleteOffset);
-		
-		for(int a : targetList) {
-			System.out.print(a+" ");
-		}
+		for(ArrayList<Integer> tmpList : trees) {
+			countLoop(tmpList, 0);
+		}		
+//		for(int a : targetList) {
+//			System.out.print(a+" ");
+//		}
+		System.out.println(leafCnt);
 	}
 	
 	public boolean delLoop(ArrayList<Integer> targetList, int idx) {
@@ -91,6 +92,30 @@ class Solution{
 			return true;
 		}catch(IndexOutOfBoundsException e) {
 			return false;
+		}
+	}
+	
+	public int countLoop(ArrayList<Integer> targetList, int idx) {
+		try {
+			int childCnt= 0;
+			boolean isProcessed = false;
+			for(int i = idx+1; i < targetList.size(); i++) {
+				if(targetList.get(i) == idx) {
+					isProcessed = true;
+					childCnt += countLoop(targetList, i);
+						
+					
+				}else if (isProcessed) {
+					break;
+				}
+			}
+			if(childCnt == 0) {
+				leafCnt++;
+			}
+//			targetList.remove(idx);
+			return 1;
+		}catch(IndexOutOfBoundsException e) {
+			return 0;
 		}
 	}
 	
