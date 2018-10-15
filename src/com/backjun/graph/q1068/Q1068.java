@@ -66,12 +66,17 @@ class Solution{
 		ArrayList<Integer> targetList = trees.get(listIdx);
 		int deleteOffset = seq - targetStartSeq;
 		delLoop(targetList, deleteOffset);
+		
+
+		for(ArrayList<Integer> tmpList : trees) {
+			for(int a : tmpList) {
+			}
+		}
+		
 		for(ArrayList<Integer> tmpList : trees) {
 			countLoop(tmpList, 0);
-		}		
-//		for(int a : targetList) {
-//			System.out.print(a+" ");
-//		}
+		}
+		
 		System.out.println(leafCnt);
 	}
 	
@@ -102,17 +107,15 @@ class Solution{
 			for(int i = idx+1; i < targetList.size(); i++) {
 				if(targetList.get(i) == idx) {
 					isProcessed = true;
-					childCnt += countLoop(targetList, i);
-						
+					childCnt += countLoop(targetList, i);					
 					
 				}else if (isProcessed) {
 					break;
 				}
 			}
-			if(childCnt == 0) {
+			if(childCnt == 0 && targetList.size() >= 1) {
 				leafCnt++;
 			}
-//			targetList.remove(idx);
 			return 1;
 		}catch(IndexOutOfBoundsException e) {
 			return 0;
