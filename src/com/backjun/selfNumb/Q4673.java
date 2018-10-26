@@ -13,7 +13,7 @@ public class Q4673 {
 	@SuppressWarnings("unchecked")
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		// TODO Auto-generated method stub
-		int findTo = 10000;
+		int findTo = 1000000;
 		Map<Integer,String> results = new HashMap<>();
 		for(int input = 1; input <= findTo ; input ++) {// 4자리 수 동안.
 			for(int j = 0; j < String.valueOf(input).length()*9 ; j++) {//네자리 수는 최대 36과 x를 더한 값이 이 네자리 수 이므로, 제너레이터는 네자리수에서 최대 36을 뺀 값일것. 고로 36번만 반복해서 찾아내면 됨.

@@ -1,4 +1,4 @@
-package com.backjun.graph.q4963;
+package com.backjun.graph;
 
 import java.io.BufferedReader;
 import java.io.IOException;
