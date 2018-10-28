@@ -8,6 +8,47 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
+/**
+ * 
+ * @author lmiz2
+ *
+ * 1260번 DFS와 BFS문제
+ * 
+ * test case : 
+ * 13 32 1
+	3 10
+	3 7
+	6 1
+	8 5
+	8 11
+	5 1
+	9 11
+	10 5
+	12 3
+	5 9
+	6 8
+	2 5
+	4 7
+	13 4
+	4 3
+	11 12
+	3 11
+	10 13
+	12 4
+	4 11
+	4 10
+	10 2
+	9 3
+	7 1
+	11 2
+	6 11
+	12 10
+	11 7
+	6 4
+	12 9
+	8 13
+	6 5
+ */
 public class Q1260 {
 	
 	public static void main(String[] args) throws IOException {
