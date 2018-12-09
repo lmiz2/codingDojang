@@ -2,18 +2,18 @@ package com.dataStructure.SelfHashTable;
 
 import java.util.ArrayList;
 
-public class HashTable<Character> {
+public class HashTable<T> {
 
 	ArrayList[] list;
 	public HashTable(int size) {
 		list = new ArrayList[size];
 		for(int i = 0; i < size ; i ++) {
-			list[i] = new ArrayList<Character>();
+			list[i] = new ArrayList<T>();
 		}
 	}
 	
 	public void put(char in) {
-		SelfCharacter input = new SelfCharacter(in);
+		SelfT input = new SelfT(in);
 		list[input.hashCode()%list.length].add(in);
 	}
 	
@@ -27,7 +27,7 @@ public class HashTable<Character> {
 					if(list[i].isEmpty()) {
 						System.out.println("[ ]");
 					}else {
-						System.out.print("["+(Character)item+"] ");
+						System.out.print("["+(T)item+"] ");
 					}
 					
 				}
@@ -37,9 +37,9 @@ public class HashTable<Character> {
 		System.out.println();
 	}
 	
-	class SelfCharacter{
+	class SelfT{
 		char i;
-		SelfCharacter(char c) {
+		SelfT(char c) {
 			// TODO Auto-generated constructor stub
 			i = c;
 		}

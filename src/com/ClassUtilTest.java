@@ -3,7 +3,7 @@ package com;
 import java.util.HashMap;
 import java.util.Map;
 
-import programmers.level5.question1retry2;
+import com.programmers.SumOfRects.question1retry2;
 
 public class ClassUtilTest {
 
