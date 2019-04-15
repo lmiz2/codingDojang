@@ -7,7 +7,9 @@ public class MergeSort {
 		// TODO Auto-generated method stub
 		MergeSort ms = new MergeSort();
 		ms.sortedArr = new int[ms.unsortedArr.length];
-		
+		ms.merging(ms.unsortedArr,0,ms.unsortedArr.length-1);
+		for(int i : ms.sortedArr)
+			System.out.println(i+" ");
 	}
 	
 	public void merging(int[] arr, int left, int right) {

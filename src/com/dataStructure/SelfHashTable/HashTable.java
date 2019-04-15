@@ -14,6 +14,7 @@ public class HashTable<T> {
 	
 	public void put(char in) {
 		SelfT input = new SelfT(in);
+		
 		list[input.hashCode()%list.length].add(in);
 	}
 	
