@@ -43,9 +43,11 @@ public class LInkedList {
 class Node{
 	Object data;
 	Node next;
+	Node prev;
 	Node(Object input){
 		data = input;
 		next = null;
+		prev = null;
 	}
 	
 	public Object getData() {
