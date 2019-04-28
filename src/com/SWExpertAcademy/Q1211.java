@@ -1,4 +1,4 @@
-package com.backjun.samsungg;
+package com.SWExpertAcademy;
 
 import java.io.File;
 import java.io.FileInputStream;
