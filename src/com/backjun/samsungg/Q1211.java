@@ -12,7 +12,7 @@ public class Q1211 {
 		try {
 		
 			int mb = 1024*1024;
-			Runtime runtime = Runtime.getRuntime();
+			Runtime runtime = Runtime.getRuntime();	
 			System.out.println("##MEMORY##");
 			
 			System.setIn(new FileInputStream("C:\\Users\\songhs\\Downloads\\input.txt"));
