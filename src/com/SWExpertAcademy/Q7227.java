@@ -1,4 +1,4 @@
-package com.backjun.samsungg;
+package com.SWExpertAcademy;
 
 import java.util.LinkedList;
 import java.util.Queue;

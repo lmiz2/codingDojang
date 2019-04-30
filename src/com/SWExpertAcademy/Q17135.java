@@ -1,4 +1,4 @@
-package com.backjun.samsungg;
+package com.SWExpertAcademy;
 
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -76,7 +76,7 @@ class SolutionQ17135{
 			}
 		}
 		
-		while(thisToploc++ < n) { // 1ÅÏ¸¶´Ù, Àûµé ÇÑÄ­¾¿ ³»·Á°¨.
+		while(thisToploc++ < n) { // 1ï¿½Ï¸ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 			Set<Pair> thisTTgt = new HashSet<>();
 			for(int i = 0; i < 3 ; i ++) {
 				Pair tgt = perArcherDoit(archers[i]);
@@ -102,7 +102,7 @@ class SolutionQ17135{
 //			System.out.println();
 			//prt end
 			
-			//Àû ÀüÁø
+			//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			for(int i = n-1; i >= -1 ; i --) {
 				for(int j = 0; j < m ; j++) {
 					if(i >= n-1) {

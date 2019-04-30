@@ -1,12 +1,9 @@
-package com.backjun.samsungg;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+package com.SWExpertAcademy;
 import java.util.Scanner;
 
 public class Q1211 {
 
+<<<<<<< HEAD:src/com/backjun/samsungg/Q1211.java
 	public static void main(String[] args){		
 //		System.setIn(new FileInputStream("res/input.txt"));
 		try {
@@ -23,11 +20,19 @@ public class Q1211 {
 				
 				System.out.println("usedMemory : "+((runtime.totalMemory() -runtime.freeMemory()) /mb)+"MB");
 	//			System.gc();
+=======
+	public static void main(String[] args){	
+        try{
+            //System.setIn(new FileInputStream("res/input.txt"));
+            Scanner sc = new Scanner(System.in);
+            for(int ti = 1 ; ti <= 10; ti++) {
+                SolutionQ1211 s = new SolutionQ1211(sc);
+                System.out.println("#"+ti+" "+s.getAnswer().y);                
+>>>>>>> 0d2feb11314ffb9e2876dc61bb48227b269f242b:src/com/SWExpertAcademy/Q1211.java
 			}
-			System.out.println("Max Memory : "+runtime.maxMemory()/mb);
-		}catch(Exception e) {
-			System.out.println(e.getMessage());
-		}
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
 	}
 	
 	
@@ -45,7 +50,7 @@ class SolutionQ1211{
 		map = new int[100][100];
 		int qcnt = sc.nextInt();
 		starts = new Pair2[50]; 
-		anss = new Pair2[50];	
+		anss = new Pair2[50];
 		
 
 		for(int i = 0; i < 100 ; i++) {
