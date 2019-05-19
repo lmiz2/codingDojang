@@ -64,7 +64,7 @@ class Solutioning{
 					finished = true;
 					break;
 				}
-			}			
+			}
 			time++;
 		}
 //		for(int a : loads) {

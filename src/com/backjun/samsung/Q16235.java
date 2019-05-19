@@ -13,7 +13,7 @@ public class Q16235 {
 	public static void main(String[] args) {
 		SolutionQ16235 s = new SolutionQ16235();
 		s.doit();
-		
+
 	}
 
 }
@@ -27,7 +27,7 @@ class SolutionQ16235{
 	int x,y,z;
 	Pair[] dirs = {new Pair(-1,-1),new Pair(-1,0),new Pair(-1,+1),new Pair(0,-1),
 				   new Pair(0,+1),new Pair(+1,-1),new Pair(+1,+1),new Pair(+1,0)};
-	
+
 	public SolutionQ16235() {
 		// TODO Auto-generated constructor stub
 		sc = new Scanner(System.in);
@@ -40,14 +40,14 @@ class SolutionQ16235{
 		for(int r = 0 ; r < n ; r++) {
 			for(int c = 0; c < n; c++) {
 				arr[r][c] = 5;
-				foodForYear[r][c] = sc.nextInt(); 
+				foodForYear[r][c] = sc.nextInt();
 			}
 		}
 
 		for(int i = 0; i < n ; i ++) {
 			for(int j = 0; j < n ; j ++) {
 				trees[i][j] = new ArrayList<>();
-			}	
+			}
 		}
 		for(int i = 0 ; i < m ; i ++) {
 			x=sc.nextInt();
@@ -55,16 +55,16 @@ class SolutionQ16235{
 			z=sc.nextInt();
 			trees[x-1][y-1].add(z);
 		}
-		
+
 	}
-	
+
 	public void doit() {
 		while(k-- > 0) { // K년 반복
 //			System.out.println(k);
-			
+
 			//1. Spring & Summer Sequences
 			for(int i = 0; i < n; i ++) {
-				for (int j = 0 ; j < n ; j ++) { 
+				for (int j = 0 ; j < n ; j ++) {
 					if(!trees[i][j].isEmpty()) {//[i][j] 타일에 나무가 있으면 실행
 						Collections.sort(trees[i][j]);
 						int[] deadTree = new int[trees[i][j].size()];
@@ -85,47 +85,30 @@ class SolutionQ16235{
 						while(survivedIdx > 0) {
 							int tmptree = survived[--survivedIdx];
 							trees[i][j].add(tmptree);
-//							if(tmptree%5 == 0) {// 가을 시작
-//								for(int di = 0; di < 8 ; di++) {									
-//									if(i+dirs[di].x >= 0 && j+dirs[di].y >= 0 
-//									 && i+dirs[di].x < n && j+dirs[di].y < n) {
-//										System.out.println((k+1)+"년차, "+i+","+j+"("+tmptree+") 에 의해 added : "+(i+dirs[di].x)+","+(j+dirs[di].y));
-//										trees[i+dirs[di].x][j+dirs[di].y].add(1);//나이가 1인나무 생김
-//									}
-//								}
-//							}//가을 끝
 						}
 						while(deadTreeIdx > 0) {
-							arr[i][j] += deadTree[--deadTreeIdx]/2; 
+							arr[i][j] += deadTree[--deadTreeIdx]/2;
 						}
 						//여름 끝
 					}
 				}
 			}
-			
+
 			for(int i = 0 ; i < n ; i ++) {
 				for(int j = 0 ; j < n ; j++) {
 					arr[i][j] += foodForYear[i][j];
 					for(int tmpTree : trees[i][j]) {
 						if(tmpTree%5 == 0) {// 가을 시작
-							for(int di = 0; di < 8 ; di++) {									
-								if(i+dirs[di].x >= 0 && j+dirs[di].y >= 0 
+							for(int di = 0; di < 8 ; di++) {
+								if(i+dirs[di].x >= 0 && j+dirs[di].y >= 0
 								 && i+dirs[di].x < n && j+dirs[di].y < n) {
-//									System.out.println("added : "+(i+dirs[di].x)+","+(j+dirs[di].y));
 									trees[i+dirs[di].x][j+dirs[di].y].add(1);//나이가 1인나무 생김
 								}
 							}
 						}//가을 끝
-					}					
+					}
 				}
-			}				
-			
-			//2. Winter Sequences
-//			for(int i = 0 ; i < n ; i ++) {
-//				for(int j = 0 ; j < n ; j ++) {
-////					System.out.print(arr[i][j]+" ");//+"("+foodForYear[i][j]+") "
-//				}
-//			}
+			}
 
 			int survivorCnt = 0;
 			for(int i = 0 ; i < n ; i ++) {
@@ -133,9 +116,8 @@ class SolutionQ16235{
 					survivorCnt += trees[i][j].size();
 				}
 			}
-//			System.out.println("cnt"+survivorCnt);
 		}
-		
+
 		//answer
 		int survivorCnt = 0;
 		for(int i = 0 ; i < n ; i ++) {
@@ -145,7 +127,7 @@ class SolutionQ16235{
 		}
 		System.out.println(survivorCnt);
 	}
-	
+
 	class Pair{
 		int x = 0;
 		int y = 0;
