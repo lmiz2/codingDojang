@@ -11,7 +11,6 @@ public class ClassUtil {
     	for (Class<?> c = obj.getClass(); c != null; c = c.getSuperclass())
         {
     		if(c.getName().equals("java.lang.Object")){
-    			// 모든 클래스의 최상위는 Object이기 때문에 Object Class는 skip
     			break;
     		}
     		
