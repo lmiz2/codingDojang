@@ -10,8 +10,8 @@ public class Comb {
 		// TODO Auto-generated method stub
 		Comb b = new Comb();
 		b.T = new int[10];
-		b.data = new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
-		b.Comb(10, 2, 10);
+		b.data = new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+		b.Comb(10, 8, 10);
 
 	}
 	void process(int q){
