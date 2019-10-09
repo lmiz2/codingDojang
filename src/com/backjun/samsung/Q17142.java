@@ -6,6 +6,11 @@ import java.util.Queue;
 import java.util.Scanner;
 
 public class Q17142 {
+	/*
+	 * 이 문제에서 배운것
+	 * 1. 조합(Combination)을 사용하지않고 수열(Permutation)을 사용하여몇십 몇백배 느린 실행속도를 가지게 했다.
+	 * 이와 같은 경우에는 조합을 사용하는게 수열보다 가늠할수 없을 정도로 효율적이다.(실행속도 차이로 인해 백준에서는 런타임 오류를 뱉었다.)
+	 */
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
