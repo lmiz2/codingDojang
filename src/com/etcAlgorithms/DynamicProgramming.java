@@ -12,14 +12,14 @@ public class DynamicProgramming {
 		// f(n,0) = 1
 		// f(0,n) = 1
 		
-		// f(7,9) = ??
+		// f(10,12) = ??
 		int a = 10;
 		int b = 12;
 		DynamicProgramming p = new DynamicProgramming(a,b);
 		
 		long beforeTime = System.currentTimeMillis(); 
 		
-		System.out.println("f(2, 2) = "+p.ff(a,b));
+		System.out.println("f("+a+", "+b+") = "+p.ff(a,b));
 		
 		long afterTime = System.currentTimeMillis();
 		long secDiffTime = (afterTime - beforeTime); //두 시간에 차 계산
