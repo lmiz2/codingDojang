@@ -1,12 +1,14 @@
 package com.backjun.samsung;
 
 import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.Queue;
 import java.util.Scanner;
 
 public class Q17281 {
-
+	/*
+	 *	이 문제에서 배운 점 
+	 * 1. 순열을 사용할때, 총 경우의 수가 n! 인지(의도한 수가 맞는지) 확인해야한다. 시간초과의 원인. 
+	 * 2. for문으로 a<<1 을 여러번 하는것보다  a<<1 a<<2 a<<3 이런식으로 하나씩 하드코딩하는게 훠얼씬 빠르다.
+	 */
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		Solution_Q17281 s = new Solution_Q17281(sc.nextInt(), sc);
@@ -18,8 +20,7 @@ class Solution_Q17281{
 	int[][] arr;
 	int bestScore;
 	
-	int ground;	
-	Queue<Boolean> grounds;
+	int ground;
 	int outCnt;
 	int score;
 	int currIning;
@@ -31,9 +32,9 @@ class Solution_Q17281{
 		this.bestScore = 0;
 		this.arr = new int[n][9];
 		this.pArr = new int[]{2,3,4,5,6,7,8,9};
-		this.rsArr = new int[8];
+		this.rsArr = new int[9];
+		this.rsArr[3] = 1;
 		this.ground = 0;
-//		this.grounds = new LinkedList<>();
 		this.outCnt = 0;
 		this.score = 0;
 		this.currIning = 0;
@@ -42,109 +43,100 @@ class Solution_Q17281{
 				arr[i][j] = sc.nextInt();
 			}
 		}
-		permu(pArr, pArr.length, 0, rsArr);
+		permu(pArr, pArr.length+1, 0, rsArr);
 		System.out.println(bestScore);
 		
 	}
 	
 	public void playball(int[] perm) {
 		int i = 0;
-		while(currIning < arr.length) {
-			if(i == 3) {
-				if(!hit(arr[currIning][0])) {
-					outCnt = 0;
-//					grounds.clear();
-					this.ground = 0;
-					currIning++;
-				}	
-			}else if(i < 3){
-				if(!hit(arr[currIning][perm[i]-1])) {
-					outCnt = 0;
-//					grounds.clear();
-					this.ground = 0;
-					currIning++;
-				}
-			}else {
-				if(!hit(arr[currIning][perm[i-1]-1])) {
-					outCnt = 0;
-//					grounds.clear();
-					this.ground = 0;
-					currIning++;
-				}
+		while(currIning < arr.length) {			
+			if(!hit(arr[currIning][perm[i]-1])) {
+				outCnt = 0;
+				this.ground = 0;
+				currIning++;
 			}
 			i++;
-			i = i%(perm.length+1);
+			i = i%(perm.length);
 		}
 		
 		if(bestScore < score) {
 			bestScore = score;
-//			System.out.println(Arrays.toString(perm)+", "+score);
 		}
 
 		this.ground = 0;
-//		grounds.clear();
 		this.outCnt = 0;
 		this.score = 0;
 		this.currIning = 0;
 	}
 	
+//	public boolean hit(int n) {
+//			if(n > 0 && n <= 4) {
+//				for(int i = 0 ; i < n; i++) {
+//					ground = ground << 1;
+//					if(i == 0) {
+//						ground = 1|ground;
+//					}					
+//					if((ground &(1<<3)) > 0) {
+//						score++;
+//						ground = ground&~(1<<3);
+//					}
+//				}				
+//			}else {
+//				if(n == 0) {
+//					outCnt++;
+//					if(outCnt == 3) {
+//						return false;
+//					}
+//				}
+//			}
+//			return true;		
+//	}
+	
 	public boolean hit(int n) {
-			if(n > 0 && n <= 4) {
-				for(int i = 0 ; i < n; i++) {
-					ground = ground << 1;
-					if(i == 0) {
-						ground = 1|ground;
-					}					
-					if((ground &(1<<3)) > 0) {
-						score++;
-						ground = ground&~(1<<3);
-					}
-				}				
-			}else {
-				if(n == 0) {
-					outCnt++;
-					if(outCnt == 3) {
-						return false;
-					}
-				}
+		if(n == 0) {
+			outCnt++;
+			if(outCnt == 3) {
+				return false;
 			}
-			return true;		
+			return true;
+		}
+		ground = ground << 1;
+		ground = 1|ground;
+		if(n > 1)ground = ground << n-1;
+		if((ground &(1<<3)) > 0) {
+			score++;
+			ground = ground&~(1<<3);
+		}
+		if((ground &(1<<4)) > 0) {
+			score++;
+			ground = ground&~(1<<4);
+		}
+		if((ground &(1<<5)) > 0) {
+			score++;
+			ground = ground&~(1<<5);
+		}
+		if((ground &(1<<6)) > 0) {
+			score++;
+			ground = ground&~(1<<6);
+		}
+		if((ground &(1<<7)) > 0) {
+			score++;
+			ground = ground&~(1<<7);
+		}
+		
+		return true;		
 	}
 	
-//	public boolean hit(int n) {
-//		if(n == 0) {
-//			outCnt++;
-//			if(outCnt == 3) {
-//				return false;
-//			}
-//		}else {
-//			if(n==4) {
-//				score++;
-//				while(!grounds.isEmpty()){
-//					if(grounds.poll()) score++;
-//				}
-//			}else {
-//				grounds.add(true);
-//				for(int i = 0 ; i < n-1; i++) {
-//					grounds.add(false);
-//				}
-//				while(grounds.size()>=4) {
-//					if(grounds.poll()) score++;
-//				}
-//			}
-//		}
-//		
-//		return true;
-//	}
 	
 	public void permu(int[] nArr, int r, int deps, int[] rsArr) {
 		if(deps == r) {
 			playball(rsArr);
 //			System.out.println(Arrays.toString(rsArr));
 //			bestScore++;
-			
 			return;
 		}
+		if(deps == 3) deps++;
 		for(int i = 0 ; i < nArr.length ; i++) {
 			if(nArr[i] == -1) {
 				continue;
