@@ -52,7 +52,6 @@ class Solution_Q16236_2{
 			}
 			System.out.println();
 		}
-		System.out.println(totalTime);
 		System.out.println();
 	}
 	
