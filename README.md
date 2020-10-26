@@ -1,10 +1,9 @@
 # codingDojang
 
 
-{
+
 func coinChange(coins []int, amount int) int {
     dp := make([]int, amount + 1)
-    
     for i, _ := range dp {
         dp[i] = amount + 1
     }
@@ -21,9 +20,8 @@ func coinChange(coins []int, amount int) int {
     }
     return dp[amount]
 }
-
 func Min(a, b int) int {
     if a > b {return b}
     return a
 }
-}
+
